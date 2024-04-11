@@ -48,7 +48,7 @@
 						<li>
 							<a class="" href="app.html">
 								<button
-									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] w-full flex items-center gap-4 px-4 capitalize"
+									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
 									type="button">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@
 						<li>
 							<a aria-current="page" class="active" href="wallets.html">
 								<button
-									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
+									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] w-full flex items-center gap-4 px-4 capitalize"
 									type="button">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -188,131 +188,75 @@
 
 			<div class="p-4 xl:ml-80">
 				<!-- Header -->
-				<nav
-					class="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">
-					<div
-						class="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
-						<div class="capitalize">
-							<nav aria-label="breadcrumb" class="w-max">
-								<ol
-									class="flex flex-wrap items-center w-full bg-opacity-60 rounded-md bg-transparent p-0 transition-all">
-									<li
-										class="flex items-center text-blue-gray-900 antialiased font-sans text-sm font-normal leading-normal cursor-pointer transition-colors duration-300 hover:text-light-blue-500">
-										<a href="#">
-											<p
-												class="block antialiased font-sans text-sm leading-normal text-blue-900 font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100">
-												dashboard
-											</p>
-										</a>
-										<span
-											class="text-gray-500 text-sm antialiased font-sans font-normal leading-normal mx-2 pointer-events-none select-none"
-											>/</span
-										>
-									</li>
-									<li
-										class="flex items-center text-blue-900 antialiased font-sans text-sm font-normal leading-normal cursor-pointer transition-colors duration-300 hover:text-blue-500">
-										<p
-											class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
-											home
-										</p>
-									</li>
-								</ol>
-							</nav>
-							<h6
-								class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-gray-900">
-								home
-							</h6>
-						</div>
-					</div>
-				</nav>
-				<div class="mt-12">
-					<!-- Cards -->
-					<div
-						id="cards-container"
-						class="mb-12 grid gap-y-8 gap-x-6 md:grid-cols-2 xl:grid-cols-4"></div>
-
-					<div
-						class="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-4 h-full items-center">
+				<p
+					class="capitalize text-sm leading-normal text-blue-900 font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100">
+					add transaction
+				</p>
+				<div class="mt-12 flex gap-6 mr-6">
+					<div class="w-full h-fit flex flex-col gap-6">
+						<!-- Add Account -->
 						<div
-							class="relative overflow-y-scroll flex flex-col justify-center bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-3">
-							<div
-								class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
-								<div>
-									<h6
-										class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900 mb-1">
-										Last transactions
-									</h6>
-									<p
-										class="antialiased font-sans text-sm leading-normal flex items-center gap-1 font-normal text-blue-gray-600">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke-width="3"
-											stroke="currentColor"
-											aria-hidden="true"
-											class="h-4 w-4 text-blue-500">
-											<path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												d="M4.5 12.75l6 6 9-13.5"></path>
-										</svg>
-										<strong><span id="month-transactions">0</span> done</strong>
-										this month
-									</p>
-								</div>
-							</div>
-							<div
-								class="p-6 overflow-x-scroll px-0 pt-0 pb-2 min-h-[400px] max-h-[600px]">
-								<table class="w-full min-w-[640px] table-auto">
-									<thead>
-										<tr>
-											<th
-												class="border-b border-blue-gray-50 py-3 px-6 text-left">
-												<p
-													class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">
-													category
-												</p>
-											</th>
-											<th
-												class="border-b border-blue-gray-50 py-3 px-6 text-left">
-												<p
-													class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400 text-right">
-													description
-												</p>
-											</th>
-											<th
-												class="border-b border-blue-gray-50 py-3 px-6 text-left">
-												<p
-													class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400 text-right">
-													date
-												</p>
-											</th>
-											<th
-												class="border-b border-blue-gray-50 py-3 px-6 text-left">
-												<p
-													class="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400 text-right">
-													amount
-												</p>
-											</th>
-										</tr>
-									</thead>
-									<tbody id="transactions-container"></tbody>
-								</table>
-							</div>
+							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
+							<p class="text-center font-semibold text-base">Add new wallet</p>
+							<p class="text-sm mt-2">Type</p>
+							<select
+								name="account-type"
+								id="account-type"
+								class="w-full h-8 border-2 rounded-lg p-1"
+								required>
+								<option value="cash">Cash</option>
+								<option value="debit">Debit Card</option>
+								<option value="credit">Credit Card</option>
+								<option value="crypto">Crypto</option>
+								<option value="other">Other</option>
+							</select>
+							<p class="text-sm mt-2">Wallet name</p>
+							<input
+								type="text"
+								name="account-name"
+								id="account-name"
+								class="w-full h-8 border-2 rounded-lg p-1" />
+							<p class="text-sm mt-2">Balance</p>
+							<input
+								type="text"
+								name="account-balance"
+								id="account-balance"
+								class="w-full h-8 border-2 rounded-lg p-1"
+								pattern="[0-9]*(\.[0-9]+)?"
+								inputmode="numeric"
+								oninput="this.value = this.value.match(pattern)[0]" />
+							<button
+								id="add-account-btn"
+								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
+								Add wallet
+							</button>
 						</div>
-						<a
-							href="transactions.html"
-							class="h-10 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
-							<p
-								class="block antialiased font-sans text-sm leading-normal text-blue-gray-600 font-bold">
-								See all transactions &rarr;
-							</p>
-						</a>
+
+						<!-- Delete account -->
+						<div
+							class="w-full h-fit rounded-xl bg-white text-gray-700 shadow-md p-10">
+							<p class="text-center font-semibold text-base">Delete wallet</p>
+							<p class="text-sm mt-4">Wallet name</p>
+							<select
+								name="account-delete"
+								id="account-delete"
+								class="w-full h-8 border-2 rounded-lg p-1"
+								required>
+								<option value="option1">option1</option>
+								<option value="option2">option2</option>
+								<option value="option3">option3</option>
+								<option value="option4">option4</option>
+								<option value="option5">option5</option>
+							</select>
+							<button
+								id="account-delete-btn"
+								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
+								Delete wallet
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
-	<script src="../app.js"></script>
 </html>

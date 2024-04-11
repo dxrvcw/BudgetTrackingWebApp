@@ -3,6 +3,10 @@ let passwordLabel = document.getElementById("password");
 let repeatPasswordLabel = document.getElementById("repeatPassword");
 let submitButton = document.getElementById("submit");
 
+if (localStorage.getItem("userId")) {
+	window.location.href = "app.html";
+}
+
 submitButton.addEventListener("click", register);
 
 function register() {

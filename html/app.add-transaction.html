@@ -80,6 +80,27 @@
 										xmlns="http://www.w3.org/2000/svg"
 										height="24"
 										viewBox="0 -960 960 960"
+										width="24"
+										style="fill: white">
+										<path
+											d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+									</svg>
+									<p
+										class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
+										add transaction
+									</p>
+								</button>
+							</a>
+						</li>
+						<li>
+							<a aria-current="page" class="active" href="wallets.html">
+								<button
+									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
+									type="button">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										height="24"
+										viewBox="0 -960 960 960"
 										width="24">
 										<path
 											d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"
@@ -88,12 +109,11 @@
 
 									<p
 										class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">
-										add transaction
+										wallets
 									</p>
 								</button>
 							</a>
 						</li>
-
 						<li>
 							<a class="" href="transactions.html">
 								<button
@@ -190,7 +210,7 @@
 							oninput="this.value = this.value.match(pattern)[0]" />
 						<p class="text-sm mt-6">Select account</p>
 						<select
-							name="category"
+							name="account"
 							id="account"
 							class="w-full h-12 border-2 rounded-lg p-2"
 							required>
@@ -251,56 +271,18 @@
 						</button>
 					</div>
 					<div class="w-full h-[700px] flex flex-col gap-6">
-						<!-- Add Account -->
-						<div
-							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
-							<p class="text-center font-semibold text-base">Add new account</p>
-							<p class="text-sm mt-2">Type</p>
-							<select
-								name="account-type"
-								id="account-type"
-								class="w-full h-8 border-2 rounded-lg p-1"
-								required>
-								<option value="cash">Cash</option>
-								<option value="debit">Debit Card</option>
-								<option value="credit">Credit Card</option>
-								<option value="crypto">Crypto</option>
-								<option value="other">Other</option>
-							</select>
-							<p class="text-sm mt-2">Account name</p>
-							<input
-								type="text"
-								name="account-name"
-								id="account-name"
-								class="w-full h-8 border-2 rounded-lg p-1" />
-							<p class="text-sm mt-2">Balance</p>
-							<input
-								type="text"
-								name="account-balance"
-								id="account-balance"
-								class="w-full h-8 border-2 rounded-lg p-1"
-								pattern="[0-9]*(\.[0-9]+)?"
-								inputmode="numeric"
-								oninput="this.value = this.value.match(pattern)[0]" />
-							<button
-								id="add-account-btn"
-								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
-								Add account
-							</button>
-						</div>
-
 						<!-- Add Category -->
 						<div
 							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
 							<p class="text-center font-semibold text-base">
 								Add new category
 							</p>
-							<p class="text-sm mt-4">Category name</p>
+							<p class="text-sm mt-8">Category name</p>
 							<input
 								type="text"
 								name="category-name"
 								id="category-name"
-								class="w-full h-8 border-2 rounded-lg p-1" />
+								class="w-full h-12 border-2 rounded-lg p-1" />
 							<button
 								id="add-category-btn"
 								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
@@ -310,23 +292,19 @@
 						<!-- Delete account -->
 						<div
 							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
-							<p class="text-center font-semibold text-base">Delete account</p>
-							<p class="text-sm mt-4">Account name</p>
+							<p class="text-center font-semibold text-base">Delete category</p>
+							<p class="text-sm mt-8">Category name</p>
 							<select
-								name="account-delete"
-								id="account-delete"
-								class="w-full h-8 border-2 rounded-lg p-1"
+								name="category-delete"
+								id="category-delete"
+								class="w-full h-12 border-2 rounded-lg p-1"
 								required>
-								<option value="option1">option1</option>
-								<option value="option2">option2</option>
-								<option value="option3">option3</option>
-								<option value="option4">option4</option>
-								<option value="option5">option5</option>
+								<option value="option1">Food</option>
 							</select>
 							<button
-								id="account-delete-btn"
+								id="category-delete-btn"
 								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
-								Delete account
+								Delete category
 							</button>
 						</div>
 					</div>

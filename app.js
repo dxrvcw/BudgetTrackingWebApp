@@ -47,9 +47,12 @@ function render(categories) {
 						}
 					}
 
-					let categoryName = categories.find(
-						(category) => category.category_id === transaction.category_id
-					).category_name;
+					let categoryName = null;
+					if (categories.length) {
+						categoryName = categories.find(
+							(category) => category.category_id === transaction.category_id
+						).category_name;
+					}
 
 					transactionsContainer.innerHTML += renderTransactionHtml(
 						categoryName,

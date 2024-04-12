@@ -194,14 +194,14 @@
 				</p>
 				<div class="mt-12 flex gap-6 mr-6">
 					<div class="w-full h-fit flex flex-col gap-6">
-						<!-- Add Account -->
+						<!-- Add Wallet -->
 						<div
 							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
 							<p class="text-center font-semibold text-base">Add new wallet</p>
 							<p class="text-sm mt-2">Type</p>
 							<select
-								name="account-type"
-								id="account-type"
+								name="wallet-type"
+								id="wallet-type"
 								class="w-full h-8 border-2 rounded-lg p-1"
 								required>
 								<option value="cash">Cash</option>
@@ -213,20 +213,20 @@
 							<p class="text-sm mt-2">Wallet name</p>
 							<input
 								type="text"
-								name="account-name"
-								id="account-name"
+								name="wallet-name"
+								id="wallet-name"
 								class="w-full h-8 border-2 rounded-lg p-1" />
 							<p class="text-sm mt-2">Balance</p>
 							<input
 								type="text"
-								name="account-balance"
-								id="account-balance"
+								name="wallet-balance"
+								id="wallet-balance"
 								class="w-full h-8 border-2 rounded-lg p-1"
 								pattern="[0-9]*(\.[0-9]+)?"
 								inputmode="numeric"
 								oninput="this.value = this.value.match(pattern)[0]" />
 							<button
-								id="add-account-btn"
+								id="add-wallet-btn"
 								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
 								Add wallet
 							</button>
@@ -238,18 +238,12 @@
 							<p class="text-center font-semibold text-base">Delete wallet</p>
 							<p class="text-sm mt-4">Wallet name</p>
 							<select
-								name="account-delete"
-								id="account-delete"
+								name="wallet-delete"
+								id="wallet-delete"
 								class="w-full h-8 border-2 rounded-lg p-1"
-								required>
-								<option value="option1">option1</option>
-								<option value="option2">option2</option>
-								<option value="option3">option3</option>
-								<option value="option4">option4</option>
-								<option value="option5">option5</option>
-							</select>
+								required></select>
 							<button
-								id="account-delete-btn"
+								id="wallet-delete-btn"
 								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
 								Delete wallet
 							</button>
@@ -258,5 +252,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="../wallets.js"></script>
 	</body>
 </html>

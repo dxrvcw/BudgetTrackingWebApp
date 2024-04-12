@@ -36,7 +36,7 @@ function render(categories) {
 				let thisMonthExpenses = 0;
 				let thisMonthIncome = 0;
 				let quantity = 0;
-				data.reverse();
+				data = data.sort((a, b) => new Date(b.date) - new Date(a.date));
 				data.forEach((transaction) => {
 					if (withinLast30Days(transaction.date)) {
 						quantity++;

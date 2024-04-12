@@ -200,87 +200,11 @@
 							All transactions
 						</p>
 						<div
-							class="mt-8 grid grid-cols-1 w-full md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 text-center">
+							class="mt-8 grid w-full grid-cols-6 text-center"
+							id="transactions-container">
 							<!-- Header -->
-							<p class="text-xs uppercase text-left border-b-2 py-2">
-								Category
-							</p>
-							<p class="text-xs uppercase text-left border-b-2 py-2">
-								Description
-							</p>
-							<p class="text-xs uppercase text-right border-b-2 py-2">Date</p>
-							<p class="text-xs uppercase text-right border-b-2 py-2">Amount</p>
+
 							<!-- Items -->
-							<p
-								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
-								Gifts
-							</p>
-							<p class="text-xs capitalize text-left border-b-2 py-2">
-								Gift for birthday party
-							</p>
-							<p class="text-xs capitalize text-right border-b-2 py-2">
-								10.10.2022
-							</p>
-							<p
-								class="text-xs capitalize text-right border-b-2 py-2 text-red-500">
-								-$200
-							</p>
-							<p
-								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
-								Food
-							</p>
-							<p class="text-xs capitalize text-left border-b-2 py-2">
-								Groceries
-							</p>
-							<p class="text-xs capitalize text-right border-b-2 py-2">
-								05.04.2024
-							</p>
-							<p
-								class="text-xs capitalize text-right border-b-2 py-2 text-red-500">
-								-$150
-							</p>
-							<p
-								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
-								Entertainment
-							</p>
-							<p class="text-xs capitalize text-left border-b-2 py-2">
-								Movie tickets
-							</p>
-							<p class="text-xs capitalize text-right border-b-2 py-2">
-								07.04.2024
-							</p>
-							<p
-								class="text-xs capitalize text-right border-b-2 py-2 text-red-500">
-								-$30
-							</p>
-							<p
-								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
-								Salary
-							</p>
-							<p class="text-xs capitalize text-left border-b-2 py-2">
-								Monthly salary
-							</p>
-							<p class="text-xs capitalize text-right border-b-2 py-2">
-								01.04.2024
-							</p>
-							<p
-								class="text-xs capitalize text-right border-b-2 py-2 text-green-500">
-								+$3000
-							</p>
-							<p
-								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
-								Investments
-							</p>
-							<p class="text-xs capitalize text-left border-b-2 py-2">
-								Stock dividends
-							</p>
-							<p class="text-xs capitalize text-right border-b-2 py-2">
-								10.04.2024
-							</p>
-							<p
-								class="text-xs capitalize text-right border-b-2 py-2 text-green-500">
-								+$200
-							</p>
 						</div>
 					</div>
 
@@ -291,33 +215,15 @@
 							Wallet overview
 						</p>
 						<!-- Wallets -->
-						<div class="mt-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+						<div
+							id="wallets-container"
+							class="mt-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
 							<!-- Wallet -->
-							<div class="bg-white shadow-md rounded-lg p-4">
-								<p class="text-sm leading-normal font-bold">Cash</p>
-								<div class="flex w-full justify-between">
-									<p class="text-sm leading-normal">Table</p>
-									<p class="text-sm leading-normal text-right">$20.00</p>
-								</div>
-							</div>
-							<div class="bg-white shadow-md rounded-lg p-4">
-								<p class="text-sm leading-normal font-bold">Credit Card</p>
-								<div class="flex w-full justify-between">
-									<p class="text-sm leading-normal">Monobank</p>
-									<p class="text-sm leading-normal text-right">$60.00</p>
-								</div>
-							</div>
-							<div class="bg-white shadow-md rounded-lg p-4">
-								<p class="text-sm leading-normal font-bold">Crypto</p>
-								<div class="flex w-full justify-between">
-									<p class="text-sm leading-normal">Binance</p>
-									<p class="text-sm leading-normal text-right">$10.00</p>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="../transactions.js"></script>
 	</body>
 </html>

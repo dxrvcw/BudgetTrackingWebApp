@@ -134,8 +134,10 @@ addTransactionBtn.addEventListener("click", () => {
 		)}&amount=${amount}&wallet_id=${wallet}&category_id=${category}&description=${description}&date=${date}`
 	).then((response) => {
 		if (response.status === 200) {
-			window.location.href = "app.html";
+			window.location.href = "app.add-transaction.html";
 			alert("Transaction added successfully");
+		} else if (response.status === 400) {
+			alert("Insufficient funds in the wallet");
 		} else {
 			alert("Error: " + response.status);
 		}

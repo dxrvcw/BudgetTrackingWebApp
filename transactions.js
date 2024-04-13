@@ -22,7 +22,7 @@ Promise.all([
 			categories
 		);
 		const deleteButtons = document.querySelectorAll("#delete-expense-btn");
-		console.log(deleteButtons);
+
 		deleteButtons.forEach((button) => {
 			button.addEventListener("click", (e) => deleteExpense(button.value));
 		});
@@ -54,6 +54,8 @@ function generateTransactionsHtml(expenses, wallets, categories) {
 			category = categories.find((c) => c.category_id === expense.category_id);
 		}
 
+		console.log(categories);
+
 		transactionsHtml += `<p
 								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
 								${category.category_name}
@@ -62,9 +64,9 @@ function generateTransactionsHtml(expenses, wallets, categories) {
                 ${expense.description ? expense.description : "-"}
 							</p>
 							<p class="text-xs capitalize text-right border-b-2 py-2">
-                <span class="font-semibold">${wallet.name}</span> (${
-			wallet.category
-		})
+                <span class="font-semibold">${
+									wallet ? wallet.name : "No Wallet"
+								}</span> (${wallet ? wallet.category : ""})
 							</p>
 							<p class="text-xs capitalize text-right border-b-2 py-2">
 								${expense.date.match(/\d{4}-\d{2}-\d{2}/)}

@@ -23,13 +23,10 @@ fetch(
 		data.forEach((category) => {
 			addTransactionCategorySelect.innerHTML +=
 				generateCategorySelectHtml(category);
-			deleteCategorySelect.innerHTML += generateCategorySelectHtml(category);
-		});
 
-		defaultCategories.forEach((category) => {
-			addTransactionCategorySelect.innerHTML += generateCategorySelectHtml({
-				category_name: category,
-			});
+			if (category.user_id !== "default") {
+				deleteCategorySelect.innerHTML += generateCategorySelectHtml(category);
+			}
 		});
 	});
 });
@@ -98,7 +95,7 @@ fetch(
 });
 
 function generateWalletSelectHtml(wallet) {
-	return `<option value="${wallet.wallet_id}">${wallet.name} - ${wallet.category} ($${wallet.balance})</option>`;
+	return `<option class="capitalize" value="${wallet.wallet_id}">${wallet.name} - ${wallet.category} ($${wallet.balance})</option>`;
 }
 
 // Add new transaction

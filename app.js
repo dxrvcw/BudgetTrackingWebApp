@@ -1,4 +1,4 @@
-const host = "http://136.244.81.173:8080";
+const host = "http://136.244.81.173:443";
 
 const cardsContainer = document.getElementById("cards-container");
 const thisMonthTransactionsLabel =

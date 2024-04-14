@@ -1,5 +1,5 @@
 // Generate options for delete
-const host = "http://136.244.81.173:8080";
+const host = "http://136.244.81.173:443";
 
 fetch(`${host}/wallets?user_id=${localStorage.getItem("userId")}`).then(
 	(response) => {

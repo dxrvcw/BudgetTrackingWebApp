@@ -1,4 +1,4 @@
-const host = "http://136.244.81.173:8080";
+const host = "http://136.244.81.173:443";
 
 let emailLabel = document.getElementById("email");
 let passwordLabel = document.getElementById("password");

@@ -4,5 +4,5 @@ signOutBtn.addEventListener("click", signOut);
 
 function signOut() {
 	localStorage.removeItem("userId");
-	window.location.href = "index.html";
+	window.location.href = "../index.html";
 }

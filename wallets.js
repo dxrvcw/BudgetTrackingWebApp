@@ -1,13 +1,14 @@
 // Generate options for delete
+const host = "http://136.244.81.173:8080";
 
-fetch(
-	`http://localhost:8080/wallets?user_id=${localStorage.getItem("userId")}`
-).then((response) => {
-	response.json().then((wallets) => {
-		document.getElementById("wallet-delete").innerHTML =
-			renderDeleteOptionsHml(wallets);
-	});
-});
+fetch(`${host}/wallets?user_id=${localStorage.getItem("userId")}`).then(
+	(response) => {
+		response.json().then((wallets) => {
+			document.getElementById("wallet-delete").innerHTML =
+				renderDeleteOptionsHml(wallets);
+		});
+	}
+);
 
 function renderDeleteOptionsHml(wallets) {
 	let options = "";
@@ -25,7 +26,7 @@ deleteWalletBtn.addEventListener("click", () => {
 	const walletId = document.getElementById("wallet-delete").value;
 	console.log(walletId);
 	fetch(
-		`http://localhost:8080/wallets/delete?user_id=${localStorage.getItem(
+		`${host}/delete?user_id=${localStorage.getItem(
 			"userId"
 		)}&wallet_id=${walletId}`
 	).then((response) => {
@@ -48,7 +49,7 @@ addWalletBtn.addEventListener("click", () => {
 	const walletBalance = document.getElementById("wallet-balance").value;
 
 	fetch(
-		`http://localhost:8080/wallets/add?user_id=${localStorage.getItem(
+		`${host}/wallets/add?user_id=${localStorage.getItem(
 			"userId"
 		)}&category=${walletType}&name=${walletName}&balance=${walletBalance}`
 	).then((response) => {
@@ -60,3 +61,28 @@ addWalletBtn.addEventListener("click", () => {
 		}
 	});
 });
+
+// Wallet Overview
+
+const walletsContainer = document.getElementById("wallets-container");
+
+fetch(`${host}/wallets?user_id=${localStorage.getItem("userId")}`)
+	.then((response) => {
+		return response.json();
+	})
+	.then((wallets) => {
+		walletsContainer.innerHTML = "";
+		wallets.forEach((wallet) => {
+			walletsContainer.innerHTML += generateWalletHtml(wallet);
+		});
+	});
+
+function generateWalletHtml(wallet) {
+	return `<div class="bg-white shadow-md rounded-lg p-4">
+								<p class="text-sm leading-normal font-bold capitalize">${wallet.category}</p>
+								<div class="flex w-full justify-between">
+									<p class="text-sm leading-normal">${wallet.name}</p>
+									<p class="text-sm leading-normal text-right">$${wallet.balance}</p>
+								</div>
+							</div>`;
+}

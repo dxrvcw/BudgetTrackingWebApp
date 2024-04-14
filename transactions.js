@@ -1,21 +1,48 @@
+const host = "http://136.244.81.173:8080";
 const transactionsContainer = document.getElementById("transactions-container");
 
 // Fetch transactions
 
 const userId = localStorage.getItem("userId");
 
+let transactionsData = [];
+let walletsData = [];
+let categoriesData = [];
+
 Promise.all([
-	fetch(`http://localhost:8080/expenses?user_id=${userId}`).then((response) =>
+	fetch(`${host}/expenses?user_id=${userId}`).then((response) =>
 		response.json()
 	),
-	fetch(`http://localhost:8080/wallets?user_id=${userId}`).then((response) =>
+	fetch(`${host}/wallets?user_id=${userId}`).then((response) =>
 		response.json()
 	),
-	fetch(`http://localhost:8080/categories?user_id=${userId}`).then((response) =>
+	fetch(`${host}/categories?user_id=${userId}`).then((response) =>
 		response.json()
 	),
 ])
 	.then(([expenses, wallets, categories]) => {
+		expenses.sort((a, b) => new Date(b.date) - new Date(a.date));
+		transactionsData = expenses;
+		walletsData = wallets;
+		categoriesData = categories;
+
+		categories.forEach((category) => {
+			const option = document.createElement("option");
+			option.value = category.category_id;
+			option.text = category.category_name;
+			const categorySelect = document.getElementById("search-category");
+			categorySelect.appendChild(option);
+		});
+
+		wallets.forEach((wallet) => {
+			const option = document.createElement("option");
+			option.value = wallet.wallet_id;
+			option.text =
+				wallet.name + " - " + wallet.category + " ($" + wallet.balance + ")";
+			const walletSelect = document.getElementById("search-wallet");
+			walletSelect.appendChild(option);
+		});
+
 		transactionsContainer.innerHTML = generateTransactionsHtml(
 			expenses,
 			wallets,
@@ -49,16 +76,14 @@ function generateTransactionsHtml(expenses, wallets, categories) {
 
 	expenses.forEach((expense) => {
 		let wallet = wallets.find((w) => w.wallet_id === expense.wallet_id);
-		let category = { name: "-" };
-		if (categories.length) {
-			category = categories.find((c) => c.category_id === expense.category_id);
-		}
 
-		console.log(categories);
+		let category = categories.find(
+			(c) => c.category_id === expense.category_id
+		);
 
 		transactionsHtml += `<p
 								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
-								${category.category_name}
+								${category ? category.category_name : "No Category"}
 							</p>
 							<p class="text-xs capitalize text-left border-b-2 py-2">
                 ${expense.description ? expense.description : "-"}
@@ -84,7 +109,7 @@ function generateTransactionsHtml(expenses, wallets, categories) {
 							<button
 								value="${expense.expense_id}"
                 id="delete-expense-btn"
-								class="rounded-md flex justify-center items-center h-8 m-auto w-8 bg-gradient-to-tr from-red-600 to-red-400 text-white shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85]">
+								class="rounded-md flex justify-center items-center h-6 m-auto w-6 bg-gradient-to-tr from-red-600 to-red-400 text-white shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85]">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									height="24"
@@ -101,7 +126,7 @@ function generateTransactionsHtml(expenses, wallets, categories) {
 
 function deleteExpense(expenseId) {
 	fetch(
-		`http://localhost:8080/expenses/delete?user_id=${localStorage.getItem(
+		`${host}/expenses/delete?user_id=${localStorage.getItem(
 			"userId"
 		)}&expense_id=${expenseId}`
 	)
@@ -118,7 +143,7 @@ function deleteExpense(expenseId) {
 
 const walletsContainer = document.getElementById("wallets-container");
 
-fetch(`http://localhost:8080/wallets?user_id=${localStorage.getItem("userId")}`)
+fetch(`${host}/wallets?user_id=${localStorage.getItem("userId")}`)
 	.then((response) => {
 		return response.json();
 	})
@@ -137,4 +162,58 @@ function generateWalletHtml(wallet) {
 									<p class="text-sm leading-normal text-right">$${wallet.balance}</p>
 								</div>
 							</div>`;
+}
+
+// Search transactions
+
+const searchDateFrom = document.getElementById("search-date-from");
+const searchDateTo = document.getElementById("search-date-to");
+const searchCategory = document.getElementById("search-category");
+const searchWallet = document.getElementById("search-wallet");
+
+searchDateFrom.addEventListener("change", handleSearch);
+searchDateTo.addEventListener("change", handleSearch);
+searchCategory.addEventListener("change", handleSearch);
+searchWallet.addEventListener("change", handleSearch);
+
+function handleSearch() {
+	const dateFrom = searchDateFrom.value;
+	const dateTo = searchDateTo.value;
+	const category = searchCategory.value;
+	const wallet = searchWallet.value;
+
+	let data = [...transactionsData];
+	data = data.filter((expense) => {
+		if (category === "all-categories") {
+			return true;
+		} else {
+			return expense.category_id === category;
+		}
+	});
+
+	if (!!dateFrom) {
+		data = data.filter((expense) => {
+			return new Date(expense.date) >= new Date(dateFrom);
+		});
+	}
+
+	if (!!dateTo) {
+		data = data.filter((expense) => {
+			return new Date(expense.date) <= new Date(dateTo);
+		});
+	}
+
+	data = data.filter((expense) => {
+		if (wallet === "all-wallets") {
+			return true;
+		} else {
+			return expense.wallet_id === wallet;
+		}
+	});
+
+	transactionsContainer.innerHTML = generateTransactionsHtml(
+		data,
+		walletsData,
+		categoriesData
+	);
 }

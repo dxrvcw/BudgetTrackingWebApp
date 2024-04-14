@@ -1,4 +1,4 @@
-const host = "http://localhost:8080";
+const host = "http://136.244.81.173:8080";
 
 const cardsContainer = document.getElementById("cards-container");
 const thisMonthTransactionsLabel =
@@ -47,15 +47,12 @@ function render(categories) {
 						}
 					}
 
-					let categoryName = null;
-					if (categories.length) {
-						categoryName = categories.find(
-							(category) => category.category_id === transaction.category_id
-						).category_name;
-					}
+					let category = categories.find(
+						(category) => category.category_id === transaction.category_id
+					);
 
 					transactionsContainer.innerHTML += renderTransactionHtml(
-						categoryName,
+						category ? category.category_name : "No category",
 						transaction.description,
 						transaction.date.match(/^\d{4}-\d{2}-\d{2}/),
 						transaction.amount

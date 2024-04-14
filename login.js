@@ -1,3 +1,5 @@
+const host = "http://136.244.81.173:8080";
+
 let emailLabel = document.getElementById("email");
 let passwordLabel = document.getElementById("password");
 let submitButton = document.getElementById("submit");
@@ -12,7 +14,7 @@ function login() {
 	let email = emailLabel.value;
 	let password = passwordLabel.value;
 
-	fetch(`http://localhost:8080/login?login=${email}&password=${password}`).then(
+	fetch(`${host}/login?login=${email}&password=${password}`).then(
 		(response) => {
 			if (response.status === 401) {
 				alert("Wrong email or password");

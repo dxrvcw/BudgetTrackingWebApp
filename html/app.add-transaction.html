@@ -16,7 +16,7 @@
 			<aside
 				class="bg-gradient-to-br from-gray-800 to-gray-900 -translate-x-80 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
 				<div class="relative border-b border-white/20">
-					<a class="flex items-center gap-4 py-6 px-8" href="#/">
+					<a class="flex items-center gap-4 py-6 px-8" href="app.html">
 						<h6
 							class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
 							Budget Dashboard
@@ -162,6 +162,7 @@
 						<li>
 							<a class="" href="#">
 								<button
+									id="sign-out-button"
 									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
 									type="button">
 									<svg
@@ -195,7 +196,11 @@
 				<div class="mt-12 flex gap-6 mr-6">
 					<!-- Add Transaction -->
 					<div
-						class="w-full h-[700px] rounded-xl bg-white text-gray-700 shadow-md px-10">
+						class="w-full relative h-[700px] rounded-xl bg-white text-gray-700 shadow-md px-10">
+						<p
+							class="flex items-center justify-center absolute w-12 h-12 -top-4 left-4 rounded-lg bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg text-3xl">
+							&plus;
+						</p>
 						<p class="text-center mt-6 font-semibold text-base">
 							Add new transaction
 						</p>
@@ -265,10 +270,14 @@
 							Add transaction
 						</button>
 					</div>
-					<div class="w-full h-[700px] flex flex-col gap-6">
+					<div class="w-full h-[700px] flex flex-col gap-12">
 						<!-- Add Category -->
 						<div
-							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
+							class="w-full relative h-fit rounded-xl bg-white text-gray-700 shadow-md p-10">
+							<p
+								class="flex items-center justify-center absolute w-12 h-12 -top-4 left-4 rounded-lg bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg text-3xl">
+								&plus;
+							</p>
 							<p class="text-center font-semibold text-base">
 								Add new category
 							</p>
@@ -286,7 +295,11 @@
 						</div>
 						<!-- Delete Category -->
 						<div
-							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
+							class="w-full h-fit relative rounded-xl bg-white text-gray-700 shadow-md p-10">
+							<p
+								class="flex items-center justify-center absolute w-12 h-12 -top-4 left-4 rounded-lg bg-gradient-to-tr from-red-600 to-red-400 text-white shadow-red-500/40 shadow-lg text-3xl">
+								&minus;
+							</p>
 							<p class="text-center font-semibold text-base">Delete category</p>
 							<p class="text-sm mt-8">Category name</p>
 							<select
@@ -305,5 +318,6 @@
 			</div>
 		</div>
 		<script src="../add-transaction.js"></script>
+		<script src="../sign-out.js"></script>
 	</body>
 </html>

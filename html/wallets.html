@@ -16,7 +16,7 @@
 			<aside
 				class="bg-gradient-to-br from-gray-800 to-gray-900 -translate-x-80 fixed inset-0 z-50 my-4 ml-4 h-[calc(100vh-32px)] w-72 rounded-xl transition-transform duration-300 xl:translate-x-0">
 				<div class="relative border-b border-white/20">
-					<a class="flex items-center gap-4 py-6 px-8" href="#/">
+					<a class="flex items-center gap-4 py-6 px-8" href="app.html">
 						<h6
 							class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white">
 							Budget Dashboard
@@ -162,6 +162,7 @@
 						<li>
 							<a class="" href="#">
 								<button
+									id="sign-out-button"
 									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
 									type="button">
 									<svg
@@ -192,66 +193,91 @@
 					class="capitalize text-sm leading-normal text-blue-900 font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100">
 					add transaction
 				</p>
-				<div class="mt-12 flex gap-6 mr-6">
-					<div class="w-full h-fit flex flex-col gap-6">
-						<!-- Add Wallet -->
-						<div
-							class="w-full h-full rounded-xl bg-white text-gray-700 shadow-md p-10">
-							<p class="text-center font-semibold text-base">Add new wallet</p>
-							<p class="text-sm mt-2">Type</p>
-							<select
-								name="wallet-type"
-								id="wallet-type"
-								class="w-full h-8 border-2 rounded-lg p-1"
-								required>
-								<option value="cash">Cash</option>
-								<option value="debit">Debit Card</option>
-								<option value="credit">Credit Card</option>
-								<option value="crypto">Crypto</option>
-								<option value="other">Other</option>
-							</select>
-							<p class="text-sm mt-2">Wallet name</p>
-							<input
-								type="text"
-								name="wallet-name"
-								id="wallet-name"
-								class="w-full h-8 border-2 rounded-lg p-1" />
-							<p class="text-sm mt-2">Balance</p>
-							<input
-								type="text"
-								name="wallet-balance"
-								id="wallet-balance"
-								class="w-full h-8 border-2 rounded-lg p-1"
-								pattern="[0-9]*(\.[0-9]+)?"
-								inputmode="numeric"
-								oninput="this.value = this.value.match(pattern)[0]" />
-							<button
-								id="add-wallet-btn"
-								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
-								Add wallet
-							</button>
+				<div class="mt-12 gap-6 mr-6">
+					<div class="w-full h-fit flex justify-center gap-6">
+						<div class="basis-2/3 flex flex-col justify-between">
+							<!-- Add Wallet -->
+							<div
+								class="w-full relative h-fit rounded-xl bg-white text-gray-700 shadow-md p-10">
+								<p
+									class="flex items-center justify-center absolute w-12 h-12 -top-4 left-4 rounded-lg bg-gradient-to-tr from-green-600 to-green-400 text-white shadow-green-500/40 shadow-lg text-3xl">
+									&plus;
+								</p>
+								<p class="text-center font-semibold text-base">
+									Add new wallet
+								</p>
+								<p class="text-sm mt-2">Type</p>
+								<select
+									name="wallet-type"
+									id="wallet-type"
+									class="w-full h-8 border-2 rounded-lg p-1"
+									required>
+									<option value="cash">Cash</option>
+									<option value="debit">Debit Card</option>
+									<option value="credit">Credit Card</option>
+									<option value="crypto">Crypto</option>
+									<option value="other">Other</option>
+								</select>
+								<p class="text-sm mt-2">Wallet name</p>
+								<input
+									type="text"
+									name="wallet-name"
+									id="wallet-name"
+									class="w-full h-8 border-2 rounded-lg p-1" />
+								<p class="text-sm mt-2">Balance</p>
+								<input
+									type="text"
+									name="wallet-balance"
+									id="wallet-balance"
+									class="w-full h-8 border-2 rounded-lg p-1"
+									pattern="[0-9]*(\.[0-9]+)?"
+									inputmode="numeric"
+									oninput="this.value = this.value.match(pattern)[0]" />
+								<button
+									id="add-wallet-btn"
+									class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
+									Add wallet
+								</button>
+							</div>
+
+							<!-- Delete account -->
+							<div
+								class="w-full relative h-fit rounded-xl bg-white text-gray-700 shadow-md p-10">
+								<p
+									class="flex items-center justify-center absolute w-12 h-12 -top-4 left-4 rounded-lg bg-gradient-to-tr from-red-600 to-red-400 text-white shadow-red-500/40 shadow-lg text-3xl">
+									&minus;
+								</p>
+								<p class="text-center font-semibold text-base">Delete wallet</p>
+								<p class="text-sm mt-4">Wallet name</p>
+								<select
+									name="wallet-delete"
+									id="wallet-delete"
+									class="w-full h-8 border-2 rounded-lg p-1"
+									required></select>
+								<button
+									id="wallet-delete-btn"
+									class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
+									Delete wallet
+								</button>
+							</div>
 						</div>
 
-						<!-- Delete account -->
+						<!-- Wallet overview -->
 						<div
-							class="w-full h-fit rounded-xl bg-white text-gray-700 shadow-md p-10">
-							<p class="text-center font-semibold text-base">Delete wallet</p>
-							<p class="text-sm mt-4">Wallet name</p>
-							<select
-								name="wallet-delete"
-								id="wallet-delete"
-								class="w-full h-8 border-2 rounded-lg p-1"
-								required></select>
-							<button
-								id="wallet-delete-btn"
-								class="w-full h-12 mt-6 flex place-items-center justify-center p-4 rounded-xl bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md">
-								Delete wallet
-							</button>
+							class="basis-1/3 h-fit overflow-y-scroll rounded-xl bg-white text-gray-700 shadow-md p-10">
+							<p class="text-center font-semibold text-base">Wallet overview</p>
+							<!-- Wallets -->
+							<div
+								id="wallets-container"
+								class="mt-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+								<!-- Wallet -->
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="../wallets.js"></script>
+		<script src="../sign-out.js"></script>
 	</body>
 </html>

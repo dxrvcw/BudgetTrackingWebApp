@@ -162,6 +162,7 @@
 						<li>
 							<a class="" href="#">
 								<button
+									id="sign-out-button"
 									class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize"
 									type="button">
 									<svg
@@ -234,7 +235,7 @@
 					<div
 						class="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-4 h-full items-center">
 						<div
-							class="relative overflow-y-scroll flex flex-col justify-center bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-3">
+							class="relative max-h-[600px] overflow-y-scroll flex flex-col justify-center bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-3">
 							<div
 								class="relative bg-clip-border rounded-xl overflow-hidden bg-transparent text-gray-700 shadow-none m-0 flex items-center justify-between p-6">
 								<div>
@@ -297,7 +298,9 @@
 											</th>
 										</tr>
 									</thead>
-									<tbody id="transactions-container"></tbody>
+									<tbody
+										class="max-w-[300px]"
+										id="transactions-container"></tbody>
 								</table>
 							</div>
 						</div>
@@ -315,4 +318,5 @@
 		</div>
 	</body>
 	<script src="../app.js"></script>
+	<script src="../sign-out.js"></script>
 </html>

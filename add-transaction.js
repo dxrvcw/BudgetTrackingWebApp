@@ -1,3 +1,5 @@
+const host = "http://136.244.81.173:8080";
+
 // Render selects
 
 const addTransactionCategorySelect = document.getElementById("category");
@@ -13,23 +15,24 @@ const defaultCategories = [
 	"Clothing 👕",
 ];
 
-fetch(
-	`http://localhost:8080/categories?user_id=${localStorage.getItem("userId")}`
-).then((response) => {
-	response.json().then((data) => {
-		addTransactionCategorySelect.innerHTML = "";
-		deleteCategorySelect.innerHTML = "";
+fetch(`${host}/categories?user_id=${localStorage.getItem("userId")}`).then(
+	(response) => {
+		response.json().then((data) => {
+			addTransactionCategorySelect.innerHTML = "";
+			deleteCategorySelect.innerHTML = "";
 
-		data.forEach((category) => {
-			addTransactionCategorySelect.innerHTML +=
-				generateCategorySelectHtml(category);
+			data.forEach((category) => {
+				addTransactionCategorySelect.innerHTML +=
+					generateCategorySelectHtml(category);
 
-			if (category.user_id !== "default") {
-				deleteCategorySelect.innerHTML += generateCategorySelectHtml(category);
-			}
+				if (category.user_id !== "default") {
+					deleteCategorySelect.innerHTML +=
+						generateCategorySelectHtml(category);
+				}
+			});
 		});
-	});
-});
+	}
+);
 
 function generateCategorySelectHtml(category) {
 	return `<option value="${category.category_id}">${category.category_name}</option>`;
@@ -46,7 +49,7 @@ addCategoryBtn.addEventListener("click", () => {
 		return;
 	}
 	fetch(
-		`http://localhost:8080/categories/add?user_id=${localStorage.getItem(
+		`${host}/categories/add?user_id=${localStorage.getItem(
 			"userId"
 		)}&name=${categoryName}`
 	).then((response) => {
@@ -66,7 +69,7 @@ const deleteCategoryBtn = document.getElementById("category-delete-btn");
 deleteCategoryBtn.addEventListener("click", () => {
 	const categoryId = document.getElementById("category-delete").value;
 	fetch(
-		`http://localhost:8080/categories/delete?user_id=${localStorage.getItem(
+		`${host}/categories/delete?user_id=${localStorage.getItem(
 			"userId"
 		)}&category_id=${categoryId}`
 	).then((response) => {
@@ -83,16 +86,17 @@ deleteCategoryBtn.addEventListener("click", () => {
 
 const addTransactionWalletSelect = document.getElementById("account");
 
-fetch(
-	`http://localhost:8080/wallets?user_id=${localStorage.getItem("userId")}`
-).then((response) => {
-	response.json().then((data) => {
-		addTransactionWalletSelect.innerHTML = "";
-		data.forEach((wallet) => {
-			addTransactionWalletSelect.innerHTML += generateWalletSelectHtml(wallet);
+fetch(`${host}/wallets?user_id=${localStorage.getItem("userId")}`).then(
+	(response) => {
+		response.json().then((data) => {
+			addTransactionWalletSelect.innerHTML = "";
+			data.forEach((wallet) => {
+				addTransactionWalletSelect.innerHTML +=
+					generateWalletSelectHtml(wallet);
+			});
 		});
-	});
-});
+	}
+);
 
 function generateWalletSelectHtml(wallet) {
 	return `<option class="capitalize" value="${wallet.wallet_id}">${wallet.name} - ${wallet.category} ($${wallet.balance})</option>`;
@@ -126,7 +130,7 @@ addTransactionBtn.addEventListener("click", () => {
 		return;
 	}
 	fetch(
-		`http://localhost:8080/expenses/add?user_id=${localStorage.getItem(
+		`${host}/expenses/add?user_id=${localStorage.getItem(
 			"userId"
 		)}&amount=${amount}&wallet_id=${wallet}&category_id=${category}&description=${description}&date=${date}`
 	).then((response) => {

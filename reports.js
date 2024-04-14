@@ -1,12 +1,14 @@
+const host = "http://136.244.81.173:8080";
 const userId = localStorage.getItem("userId");
 
 let expensesData = [];
+let categoriesData = [];
 
 Promise.all([
-	fetch(`http://localhost:8080/expenses?user_id=${userId}`).then((response) =>
+	fetch(`${host}/expenses?user_id=${userId}`).then((response) =>
 		response.json()
 	),
-	fetch(`http://localhost:8080/categories?user_id=${userId}`).then((response) =>
+	fetch(`${host}/categories?user_id=${userId}`).then((response) =>
 		response.json()
 	),
 ])
@@ -14,9 +16,12 @@ Promise.all([
 		expenses.sort((a, b) => new Date(a.date) - new Date(b.date));
 		expensesData = expenses;
 
+		categoriesData = categories;
+
 		renderCategories(categories);
 		renderCards(expenses);
 		renderChart(expenses);
+		renderPieChart(expenses);
 	})
 	.catch((error) => {
 		console.error("Error fetching data:", error);
@@ -163,6 +168,72 @@ function renderChart(expenses) {
 	new Chart(ctx, config);
 }
 
+function renderPieChart(expenses) {
+	const pieChartContainer = document.getElementById("pie-chart-container");
+	pieChartContainer.innerHTML = "<canvas id='pie-chart'></canvas>";
+	const ctx = document.getElementById("pie-chart");
+
+	const chartExpensesData = {};
+	const chartIncomesData = {};
+	const categoryNames = [];
+
+	expenses.forEach((expense) => {
+		const categoryId = expense.category_id;
+		const category = categoriesData.find(
+			(category) => category.category_id === categoryId
+		);
+
+		const categoryName = category ? category.category_name : "No category";
+
+		console.log(categoryName);
+
+		if (!categoryNames.includes(categoryName)) {
+			categoryNames.push(categoryName);
+		}
+		if (!chartExpensesData["_" + categoryName]) {
+			chartExpensesData["_" + categoryName] = 0;
+		}
+
+		if (!chartIncomesData["_" + categoryName]) {
+			chartIncomesData["_" + categoryName] = 0;
+		}
+		if (expense.amount < 0) {
+			chartExpensesData["_" + categoryName] += Math.abs(expense.amount);
+		} else {
+			chartIncomesData["_" + categoryName] += expense.amount;
+		}
+	});
+
+	const data = {
+		labels: categoryNames,
+		datasets: [
+			{
+				label: "Expenses",
+				data: Object.values(chartExpensesData),
+			},
+			{
+				label: "Incomes",
+				data: Object.values(chartIncomesData),
+			},
+		],
+	};
+
+	const config = {
+		type: "doughnut",
+		data: data,
+		options: {
+			responsive: true,
+			plugins: {
+				legend: {
+					position: "top",
+				},
+			},
+		},
+	};
+
+	new Chart(ctx, config);
+}
+
 function getRefactoredDate(date) {
 	const months = [
 		"Jan",
@@ -214,4 +285,5 @@ function handleSearch() {
 
 	renderCards(data);
 	renderChart(data);
+	renderPieChart(data);
 }

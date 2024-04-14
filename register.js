@@ -1,3 +1,5 @@
+const host = "http://136.244.81.173:8080";
+
 let emailLabel = document.getElementById("email");
 let passwordLabel = document.getElementById("password");
 let repeatPasswordLabel = document.getElementById("repeatPassword");
@@ -15,15 +17,15 @@ function register() {
 	let repeatPassword = repeatPasswordLabel.value;
 
 	if (validateEmail(email) && validatePassword(password, repeatPassword)) {
-		fetch(
-			`http://localhost:8080/register?login=${email}&password=${password}`
-		).then((response) => {
-			if (response.status !== 200) {
-				alert("Error: " + response.status);
-			} else {
-				window.location.href = "login.html";
+		fetch(`${host}/register?login=${email}&password=${password}`).then(
+			(response) => {
+				if (response.status !== 200) {
+					alert("Error: " + response.status);
+				} else {
+					window.location.href = "login.html";
+				}
 			}
-		});
+		);
 	}
 }
 

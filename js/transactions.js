@@ -111,6 +111,7 @@ function generateTransactionsHtml(expenses, wallets, categories) {
                 id="delete-expense-btn"
 								class="rounded-md flex justify-center items-center h-6 m-auto w-6 bg-gradient-to-tr from-red-600 to-red-400 text-white shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85]">
 								<svg
+								class="pointer-events-none"
 									xmlns="http://www.w3.org/2000/svg"
 									height="24"
 									viewBox="0 -960 960 960"

@@ -26,7 +26,7 @@ deleteWalletBtn.addEventListener("click", () => {
 	const walletId = document.getElementById("wallet-delete").value;
 	console.log(walletId);
 	fetch(
-		`${host}/delete?user_id=${localStorage.getItem(
+		`${host}/wallets/delete?user_id=${localStorage.getItem(
 			"userId"
 		)}&wallet_id=${walletId}`
 	).then((response) => {

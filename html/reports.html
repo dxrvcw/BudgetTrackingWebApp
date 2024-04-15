@@ -185,24 +185,17 @@
 					class="mt-12 sm:mr-6 grid grid-cols-1 md:grid-cols-3 gap-6 h-fit w-full">
 					<select
 						id="category-select"
-						class="h-12 p-2 rounded-xl bg-white text-gray-700 shadow-md">
+						class="h-12 p-2 rounded-xl bg-white text-gray-700 shadow-md border-2">
 						<option value="all">All</option>
 					</select>
 					<input
-						type="text"
+						type="date"
 						id="start-date"
-						onfocus="(this.type='date')"
-						onblur="(this.value === '' ? this.type='text' : null)"
-						placeholder="Start date"
 						required
 						class="h-12 p-4 rounded-xl bg-white text-gray-700 shadow-md border-2" />
 					<input
-						type="text"
+						type="date"
 						id="end-date"
-						required
-						onfocus="(this.type='date')"
-						onblur="(this.value === '' ? this.type='text' : null)"
-						placeholder="End date"
 						class="h-12 p-4 rounded-xl bg-white text-gray-700 shadow-md border-2" />
 				</div>
 

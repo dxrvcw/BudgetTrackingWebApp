@@ -61,15 +61,15 @@ Promise.all([
 function generateTransactionsHtml(expenses, wallets, categories) {
 	expenses = expenses.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-	let transactionsHtml = `<p class="text-xs uppercase text-left border-b-2 py-2">
+	let transactionsHtml = `<p class="text-xs uppercase text-left border-b-2 py-2 text-ellipsis">
 								Category
 							</p>
-							<p class="text-xs uppercase text-left border-b-2 py-2">
+							<p class="text-xs uppercase text-left hidden sm:block border-b-2 py-2 text-ellipsis">
 								Description
 							</p>
-							<p class="text-xs uppercase text-right border-b-2 py-2">Wallet</p>
-							<p class="text-xs uppercase text-right border-b-2 py-2">Date</p>
-							<p class="text-xs uppercase text-right border-b-2 py-2">Amount</p>
+							<p class="text-xs uppercase text-right border-b-2 py-2 text-ellipsis hidden sm:block">Wallet</p>
+							<p class="text-xs uppercase text-right border-b-2 py-2 text-ellipsis">Date</p>
+							<p class="text-xs uppercase text-right border-b-2 py-2 text-ellipsis">Amount</p>
 							<p class="text-xs uppercase text-center border-b-2 py-2">
 								Delete
 							</p>`;
@@ -82,13 +82,13 @@ function generateTransactionsHtml(expenses, wallets, categories) {
 		);
 
 		transactionsHtml += `<p
-								class="text-sm font-semibold capitalize text-left border-b-2 py-2">
+								class="text-sm font-semibold capitalize text-ellipsis text-left border-b-2 py-2">
 								${category ? category.category_name : "No Category"}
 							</p>
-							<p class="text-xs capitalize text-left border-b-2 py-2">
+							<p class="text-xs capitalize text-ellipsis text-left border-b-2 py-2 hidden sm:block">
                 ${expense.description ? expense.description : "-"}
 							</p>
-							<p class="text-xs capitalize text-right border-b-2 py-2">
+							<p class="text-xs capitalize text-right border-b-2 py-2 hidden sm:block">
                 <span class="font-semibold">${
 									wallet ? wallet.name : "No Wallet"
 								}</span> (${wallet ? wallet.category : ""})

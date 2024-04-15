@@ -134,7 +134,7 @@ function renderChart(expenses) {
 			stacked: false,
 			plugins: {
 				title: {
-					display: true,
+					display: false,
 					text: "Chart",
 				},
 			},
@@ -255,7 +255,13 @@ function getRefactoredDate(date) {
 	return `${year} ${months[monthIndex]}`;
 }
 
-document.getElementById("search-btn").addEventListener("click", handleSearch);
+document
+	.getElementById("category-select")
+	.addEventListener("change", handleSearch);
+
+document.getElementById("start-date").addEventListener("change", handleSearch);
+
+document.getElementById("end-date").addEventListener("change", handleSearch);
 
 function handleSearch() {
 	const categoryId = document.getElementById("category-select").value;

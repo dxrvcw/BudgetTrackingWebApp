@@ -58,8 +58,8 @@ function renderCards(expenses) {
 
 	const totalTransactions = expenses.length;
 
-	totalExpensesLabel.innerText = `$${totalExpenses.toFixed(2)}`;
-	totalIncomeLabel.innerText = `$${totalIncome.toFixed(2)}`;
+	totalExpensesLabel.innerText = `$${totalExpenses.toFixed(1)}`;
+	totalIncomeLabel.innerText = `$${totalIncome.toFixed(1)}`;
 	totalTransactionsLabel.innerText = totalTransactions;
 }
 
